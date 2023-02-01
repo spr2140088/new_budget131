@@ -31,22 +31,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   double month = 0;
   double week = 0;
-  int day = 0;
-
-  int weeks = 4;
-  int days = 7;
-  String aaa = '';
+  double day = 0;
+  double weekbudget = 0;
+  double daybudget = 0;
 
   TextEditingController moneyController = TextEditingController();
 
-   String weekCalc(double month) {
+   double weekCalc(double month) {
     week = (month / 4);
-    return week.toString();
+    return week;
   }
 
-  String dayCalc(int week, int days) {
-    day = (week / days) as int;
-    return day.toString();
+  double dayCalc(double week) {
+    day = (week / 30);
+    return day;
   }
 
   @override
@@ -99,8 +97,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         setState(() {
                           month = double.parse(moneyController.text);
-                          aaa = weekCalc(month);
-                          dayCalc;
+                          weekbudget = weekCalc(month);
+                          daybudget =  dayCalc(month) as double;
                         });
                       },
                     ),
@@ -138,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(width: 10,),
                   Text('¥', style: TextStyle(fontSize: 30),),
                   SizedBox(width: 10,),
-                  Text(aaa, style: TextStyle(fontSize:30),),
+                  Text((month.floor()).toString(), style: TextStyle(fontSize:30),),
                 ],
               ),
             ),
@@ -166,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(width: 10,),
                   Text('¥', style: TextStyle(fontSize: 30),),
                   SizedBox(width: 10,),
-                  Text("${week.toString()}", style: TextStyle(fontSize:30),),
+                  Text((weekbudget.floor()).toString(), style: TextStyle(fontSize:30),),
                 ],
               ),
             ),
@@ -194,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(width: 10,),
                   Text('¥', style: TextStyle(fontSize: 30),),
                   SizedBox(width: 10,),
-                  Text("${day}", style: TextStyle(fontSize:30),),
+                  Text((daybudget.floor()).toString(), style: TextStyle(fontSize:30),),
                 ],
               ),
             ),
